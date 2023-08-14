@@ -21,5 +21,12 @@ class Preferences(context: Context, private val moshi: Moshi) {
 
     companion object {
 
+        const val PREFS_REGION_ID = "region_id"
     }
+
+    fun saveRegionId(id: Long) {
+        editor.putLong(PREFS_REGION_ID, id).apply()
+    }
+
+    fun getRegionId(): Long = prefs.getLong(PREFS_REGION_ID, -1)
 }

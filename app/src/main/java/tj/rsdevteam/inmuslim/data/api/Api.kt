@@ -2,7 +2,9 @@ package tj.rsdevteam.inmuslim.data.api
 
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
+import tj.rsdevteam.inmuslim.data.models.network.GetRegionsResponse
 import tj.rsdevteam.inmuslim.data.models.network.GetTimingBody
 import tj.rsdevteam.inmuslim.data.models.network.GetTimingResponse
 
@@ -12,6 +14,9 @@ import tj.rsdevteam.inmuslim.data.models.network.GetTimingResponse
  */
 
 interface Api {
+
+    @GET("GetRegions")
+    suspend fun getRegions(): Response<GetRegionsResponse>
 
     @POST("GetTiming")
     suspend fun getTiming(@Body body: GetTimingBody): Response<GetTimingResponse>

@@ -8,6 +8,7 @@ import kotlinx.coroutines.launch
 import tj.rsdevteam.inmuslim.data.models.DialogState
 import tj.rsdevteam.inmuslim.data.models.network.GetTimingBody
 import tj.rsdevteam.inmuslim.data.models.network.Status
+import tj.rsdevteam.inmuslim.data.repositories.RegionRepository
 import tj.rsdevteam.inmuslim.data.repositories.TimingRepository
 import javax.inject.Inject
 
@@ -19,6 +20,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel
 @Inject constructor(
+    private val regionRepository: RegionRepository,
     private val timingRepository: TimingRepository
 ) : ViewModel() {
 
@@ -27,18 +29,16 @@ class HomeViewModel
         private set
     var showLoading = mutableStateOf(false)
         private set
-    var timingText=  mutableStateOf("")
+    var timingText = mutableStateOf("")
+        private set
+    var openSelectRegion = mutableStateOf<Boolean?>(null)
         private set
     // endregion
 
     // region network
-    init {
-        getTiming()
-    }
-
     private fun getTiming() {
         viewModelScope.launch {
-            timingRepository.getTiming(GetTimingBody(regionId = 1))
+            timingRepository.getTiming()
                 .collect { rs ->
                     when (rs.status) {
                         Status.LOADING -> Unit
@@ -50,4 +50,12 @@ class HomeViewModel
         }
     }
     // endregion
+
+    fun refresh(){
+        if (regionRepository.getRegionId() > 0) {
+            getTiming()
+        } else {
+            openSelectRegion.value = true
+        }
+    }
 }
