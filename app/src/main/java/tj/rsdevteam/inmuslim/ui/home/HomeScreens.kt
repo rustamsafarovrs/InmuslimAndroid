@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -36,7 +37,7 @@ fun TimeItem(title: String, start: String) {
             .padding(horizontal = 20.dp)
             .defaultMinSize(minHeight = 80.dp)
             .clip(shape = InmuslimShapes.large)
-            .background(Color(0xFFE0F2F1))
+            .background(MaterialTheme.colorScheme.primaryContainer)
             .padding(horizontal = 20.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
