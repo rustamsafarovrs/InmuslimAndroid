@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import tj.rsdevteam.inmuslim.data.models.DialogState
-import tj.rsdevteam.inmuslim.data.models.network.GetTimingBody
+import tj.rsdevteam.inmuslim.data.models.Timing
 import tj.rsdevteam.inmuslim.data.models.network.Status
 import tj.rsdevteam.inmuslim.data.repositories.RegionRepository
 import tj.rsdevteam.inmuslim.data.repositories.TimingRepository
@@ -29,7 +29,7 @@ class HomeViewModel
         private set
     var showLoading = mutableStateOf(false)
         private set
-    var timingText = mutableStateOf("")
+    var timing = mutableStateOf<Timing?>(null)
         private set
     var openSelectRegion = mutableStateOf<Boolean?>(null)
         private set
@@ -42,7 +42,7 @@ class HomeViewModel
                 .collect { rs ->
                     when (rs.status) {
                         Status.LOADING -> Unit
-                        Status.SUCCESS -> timingText.value = rs.data.toString()
+                        Status.SUCCESS -> timing.value = rs.data!!.timing
                         Status.ERROR -> dialogState.value = DialogState(rs.message)
                     }
                     showLoading.value = rs.status == Status.LOADING
