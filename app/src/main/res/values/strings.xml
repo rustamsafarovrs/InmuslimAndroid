@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Inmuslim</string>
+    <string name="default_notification_channel_id">Push-notifications</string>
 </resources>

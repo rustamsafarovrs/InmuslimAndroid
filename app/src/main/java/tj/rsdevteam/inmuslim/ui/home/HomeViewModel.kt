@@ -7,9 +7,12 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import tj.rsdevteam.inmuslim.data.models.DialogState
 import tj.rsdevteam.inmuslim.data.models.Timing
+import tj.rsdevteam.inmuslim.data.models.network.RegisterUserBody
 import tj.rsdevteam.inmuslim.data.models.network.Status
 import tj.rsdevteam.inmuslim.data.repositories.RegionRepository
 import tj.rsdevteam.inmuslim.data.repositories.TimingRepository
+import tj.rsdevteam.inmuslim.data.repositories.UserRepository
+import tj.rsdevteam.inmuslim.utils.Utils
 import javax.inject.Inject
 
 /**
@@ -21,7 +24,8 @@ import javax.inject.Inject
 class HomeViewModel
 @Inject constructor(
     private val regionRepository: RegionRepository,
-    private val timingRepository: TimingRepository
+    private val timingRepository: TimingRepository,
+    private val userRepository: UserRepository
 ) : ViewModel() {
 
     // region properties
@@ -34,6 +38,14 @@ class HomeViewModel
     var openSelectRegion = mutableStateOf<Boolean?>(null)
         private set
     // endregion
+
+    init {
+        if (userRepository.getUserId() != -1L) {
+            if (userRepository.getFirebaseToken().isEmpty()) {
+                updateMessagingId()
+            }
+        }
+    }
 
     // region network
     private fun getTiming() {
@@ -49,11 +61,40 @@ class HomeViewModel
                 }
         }
     }
+
+    private fun registerUser() {
+        viewModelScope.launch {
+            userRepository.registerUser(RegisterUserBody(Utils.getDeviceInfo()))
+                .collect { rs ->
+                    when (rs.status) {
+                        Status.LOADING -> Unit
+                        Status.SUCCESS -> updateMessagingId()
+                        Status.ERROR -> Unit
+                    }
+                }
+        }
+    }
+
+    private fun updateMessagingId() {
+        viewModelScope.launch {
+            userRepository.updateMessagingId()
+                .collect { rs ->
+                    when (rs.status) {
+                        Status.LOADING -> Unit
+                        Status.SUCCESS -> Unit
+                        Status.ERROR -> Unit
+                    }
+                }
+        }
+    }
     // endregion
 
-    fun refresh(){
+    fun refresh() {
         if (regionRepository.getRegionId() > 0) {
             getTiming()
+            if (userRepository.needRegister()) {
+                registerUser()
+            }
         } else {
             openSelectRegion.value = true
         }
