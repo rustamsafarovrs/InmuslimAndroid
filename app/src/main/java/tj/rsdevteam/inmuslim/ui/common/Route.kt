@@ -9,4 +9,5 @@ object Route {
 
     const val HOME = "home"
     const val REGIONS = "regions"
+    const val SETTINGS = "settings"
 }
