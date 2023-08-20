@@ -35,8 +35,6 @@ class HomeViewModel
         private set
     var timing = mutableStateOf<Timing?>(null)
         private set
-    var openSelectRegion = mutableStateOf<Boolean?>(null)
-        private set
     // endregion
 
     init {
@@ -90,13 +88,9 @@ class HomeViewModel
     // endregion
 
     fun refresh() {
-        if (regionRepository.getRegionId() > 0) {
-            getTiming()
-            if (userRepository.needRegister()) {
-                registerUser()
-            }
-        } else {
-            openSelectRegion.value = true
+        getTiming()
+        if (userRepository.needRegister()) {
+            registerUser()
         }
     }
 }

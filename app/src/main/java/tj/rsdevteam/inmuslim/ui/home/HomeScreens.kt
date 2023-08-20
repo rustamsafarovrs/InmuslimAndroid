@@ -53,7 +53,6 @@ fun TimeItem(title: String, start: String) {
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel(),
-    navigateToSelectRegion: () -> Unit,
     navigateToSettings: () -> Unit
 ) {
     LaunchedEffect(Unit) {
@@ -62,10 +61,6 @@ fun HomeScreen(
     ErrorDialog(viewModel.dialogState.value)
     if (viewModel.showLoading.value) {
         ProgressBar()
-    }
-    if (viewModel.openSelectRegion.value == true) {
-        navigateToSelectRegion.invoke()
-        viewModel.openSelectRegion.value = null
     }
     Column(
         modifier = Modifier
