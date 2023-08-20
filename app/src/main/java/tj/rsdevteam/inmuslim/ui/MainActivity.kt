@@ -1,4 +1,4 @@
-package tj.rsdevteam.inmuslim
+package tj.rsdevteam.inmuslim.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -13,6 +13,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
+import tj.rsdevteam.inmuslim.ui.settings.SettingsScreen
 import tj.rsdevteam.inmuslim.ui.common.Route
 import tj.rsdevteam.inmuslim.ui.home.HomeScreen
 import tj.rsdevteam.inmuslim.ui.region.RegionScreen
@@ -42,14 +43,19 @@ class MainActivity : ComponentActivity() {
 fun Navigation(navHostController: NavHostController) {
     NavHost(navController = navHostController, startDestination = Route.HOME) {
         composable(Route.HOME) {
-            HomeScreen {
+            HomeScreen(navigateToSelectRegion = {
                 navHostController.navigate(Route.REGIONS)
-            }
+            }, navigateToSettings = {
+                navHostController.navigate(Route.SETTINGS)
+            })
         }
         composable(Route.REGIONS) {
             RegionScreen {
                 navHostController.popBackStack()
             }
+        }
+        composable(Route.SETTINGS) {
+            SettingsScreen()
         }
     }
 }

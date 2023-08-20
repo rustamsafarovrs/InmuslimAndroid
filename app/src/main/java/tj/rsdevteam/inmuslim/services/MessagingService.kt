@@ -15,7 +15,7 @@ import com.google.firebase.messaging.RemoteMessage
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import tj.rsdevteam.inmuslim.MainActivity
+import tj.rsdevteam.inmuslim.ui.MainActivity
 import tj.rsdevteam.inmuslim.R
 import tj.rsdevteam.inmuslim.data.preferences.Preferences
 import javax.inject.Inject
