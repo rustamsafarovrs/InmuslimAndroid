@@ -4,6 +4,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import tj.rsdevteam.inmuslim.data.api.Api
+import tj.rsdevteam.inmuslim.data.constants.Constants
 import tj.rsdevteam.inmuslim.data.models.network.GetTimingBody
 import tj.rsdevteam.inmuslim.data.models.network.GetTimingResponse
 import tj.rsdevteam.inmuslim.data.models.network.Resource
@@ -17,6 +18,7 @@ import javax.inject.Singleton
  */
 
 @Singleton
+@Suppress("TooGenericExceptionCaught")
 class TimingRepository
 @Inject constructor(
     private val api: Api,
@@ -28,7 +30,7 @@ class TimingRepository
         try {
             emit(Resource.loading())
             val response = api.getTiming(GetTimingBody(regionId = preferences.getRegionId()))
-            delay(1000)
+            delay(Constants.MIDDLE_DELAY)
             if (response.isSuccessful && response.body()?.result == 0) {
                 emit(Resource.success(response.body()!!))
             } else {

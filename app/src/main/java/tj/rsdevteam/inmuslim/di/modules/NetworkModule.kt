@@ -13,6 +13,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import tj.rsdevteam.inmuslim.config.BuildType
 import tj.rsdevteam.inmuslim.config.BuildVars
 import tj.rsdevteam.inmuslim.data.api.Api
+import tj.rsdevteam.inmuslim.data.constants.Constants
 import tj.rsdevteam.inmuslim.data.repositories.ErrorHandler
 import java.util.concurrent.TimeUnit
 
@@ -45,8 +46,8 @@ class NetworkModule {
         loggingInterceptor: HttpLoggingInterceptor
     ) = OkHttpClient.Builder()
         .addInterceptor(loggingInterceptor)
-        .readTimeout(20, TimeUnit.SECONDS)
-        .connectTimeout(20, TimeUnit.SECONDS)
+        .readTimeout(Constants.DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+        .connectTimeout(Constants.DEFAULT_TIMEOUT, TimeUnit.SECONDS)
         .build()
 
     @Provides

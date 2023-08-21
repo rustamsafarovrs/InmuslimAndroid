@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -61,7 +60,11 @@ fun RegionScreen(viewModel: RegionViewModel = hiltViewModel(), onSelected: () ->
             ProgressBar()
         } else {
             Spacer(modifier = Modifier.height(30.dp))
-            Text(text = "Выберите регион или город", style = InmuslimTypography.titleLarge, modifier = Modifier.padding(horizontal = 20.dp))
+            Text(
+                text = "Выберите регион или город",
+                style = InmuslimTypography.titleLarge,
+                modifier = Modifier.padding(horizontal = 20.dp)
+            )
             Spacer(modifier = Modifier.height(20.dp))
             Regions(viewModel.list.value) {
                 viewModel.onRegionSelected(it)

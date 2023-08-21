@@ -18,6 +18,7 @@ import okhttp3.Request
 import tj.rsdevteam.inmuslim.ui.MainActivity
 import tj.rsdevteam.inmuslim.R
 import tj.rsdevteam.inmuslim.data.preferences.Preferences
+import java.io.IOException
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -90,12 +91,11 @@ class MessagingService : FirebaseMessagingService() {
                 return BitmapFactory.decodeStream(response.body!!.byteStream())
             } else {
                 Log.e(TAG, "Error in getting notification image, code=" + response.code)
-                return null
             }
-        } catch (e: Exception) {
+        } catch (e: IOException) {
             Log.e(TAG, "Error in getting notification image, message=" + e.message)
-            return null
         }
+        return null
     }
 
     override fun onNewToken(token: String) {

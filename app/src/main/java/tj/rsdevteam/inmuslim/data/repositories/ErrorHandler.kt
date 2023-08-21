@@ -3,6 +3,7 @@ package tj.rsdevteam.inmuslim.data.repositories
 import com.squareup.moshi.Moshi
 import okhttp3.ResponseBody
 import retrofit2.HttpException
+import tj.rsdevteam.inmuslim.data.constants.Constants
 import tj.rsdevteam.inmuslim.data.models.network.ApiError
 import tj.rsdevteam.inmuslim.data.models.network.Resource
 import java.io.IOException
@@ -12,6 +13,7 @@ import java.io.IOException
  * github.com/rustamsafarovrs
  */
 
+@Suppress("TooGenericExceptionCaught")
 class ErrorHandler constructor(private val moshi: Moshi) {
 
     fun <T> getError(e: Throwable): Resource<T> {
@@ -55,7 +57,7 @@ class ErrorHandler constructor(private val moshi: Moshi) {
     private fun handleHttpException(code: Int, errorBody: String?): Exception =
         try {
             val error: ApiError = moshi.adapter(ApiError::class.java).fromJson(errorBody!!)!!
-            if (code == 403) {
+            if (code == Constants.UNAUTHORIZED) {
                 SessionException()
             } else {
                 ApiException(error)

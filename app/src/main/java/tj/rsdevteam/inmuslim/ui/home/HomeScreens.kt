@@ -92,7 +92,7 @@ fun HomeScreen(
 @Composable
 private fun TimeItems(timing: Timing) {
     Column {
-        Spacer(modifier = Modifier.weight(0.6f))
+        Spacer(modifier = Modifier.height(20.dp))
         TimeItem(title = "Бомдод", start = timing.fajr)
         Spacer(modifier = Modifier.height(12.dp))
         TimeItem(title = "Тулӯи офтоб", start = timing.sunrise)

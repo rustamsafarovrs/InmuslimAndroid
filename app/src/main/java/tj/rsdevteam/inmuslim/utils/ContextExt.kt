@@ -15,5 +15,5 @@ internal fun Context.findActivity(): Activity {
         if (context is Activity) return context
         context = context.baseContext
     }
-    throw IllegalStateException("Activity not found")
+    error("Activity not found")
 }

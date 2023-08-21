@@ -9,7 +9,6 @@ import tj.rsdevteam.inmuslim.data.models.DialogState
 import tj.rsdevteam.inmuslim.data.models.Timing
 import tj.rsdevteam.inmuslim.data.models.network.RegisterUserBody
 import tj.rsdevteam.inmuslim.data.models.network.Status
-import tj.rsdevteam.inmuslim.data.repositories.RegionRepository
 import tj.rsdevteam.inmuslim.data.repositories.TimingRepository
 import tj.rsdevteam.inmuslim.data.repositories.UserRepository
 import tj.rsdevteam.inmuslim.utils.Utils
@@ -23,7 +22,6 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel
 @Inject constructor(
-    private val regionRepository: RegionRepository,
     private val timingRepository: TimingRepository,
     private val userRepository: UserRepository
 ) : ViewModel() {

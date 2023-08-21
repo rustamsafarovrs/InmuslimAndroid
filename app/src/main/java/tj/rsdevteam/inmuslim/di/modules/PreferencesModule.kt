@@ -1,7 +1,6 @@
 package tj.rsdevteam.inmuslim.di.modules
 
 import android.content.Context
-import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,5 +18,5 @@ import tj.rsdevteam.inmuslim.data.preferences.Preferences
 class PreferencesModule {
 
     @Provides
-    fun providePreferences(@ApplicationContext context: Context, moshi: Moshi) = Preferences(context, moshi)
+    fun providePreferences(@ApplicationContext context: Context) = Preferences(context)
 }

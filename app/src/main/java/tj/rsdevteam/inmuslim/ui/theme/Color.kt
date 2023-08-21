@@ -3,6 +3,7 @@ package tj.rsdevteam.inmuslim.ui.theme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
 
+@Suppress("MagicNumber")
 val LightColors = lightColorScheme(
     primary = Color(0xFF01B6D5),
     onPrimary = Color(0xFF00C6EA),

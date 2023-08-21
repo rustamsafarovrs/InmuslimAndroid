@@ -2,14 +2,13 @@ package tj.rsdevteam.inmuslim.data.preferences
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.squareup.moshi.Moshi
 
 /**
  * Created by Rustam Safarov on 8/13/23.
  * github.com/rustamsafarovrs
  */
 
-class Preferences(context: Context, private val moshi: Moshi) {
+class Preferences(context: Context) {
 
     private val prefs: SharedPreferences
     private val editor: SharedPreferences.Editor
