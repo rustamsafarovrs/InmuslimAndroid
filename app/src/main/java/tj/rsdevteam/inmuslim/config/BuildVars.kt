@@ -10,10 +10,10 @@ object BuildVars {
 
     val BASE_URL: String = when (BUILD_TYPE) {
         BuildType.TEST -> {
-            "http://94.198.216.127:8088/staging/api/"
+            "http://rsdevteam.ru:8088/inmuslim/staging/api/"
         }
         BuildType.PROD -> {
-            "http://94.198.216.127/api"
+            "http://rsdevteam.ru/inmuslim/api"
         }
     }
 }
