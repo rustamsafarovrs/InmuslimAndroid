@@ -43,6 +43,7 @@ class HomeViewModel
                 updateMessagingId()
             }
         }
+        refresh()
     }
 
     // region network
@@ -87,7 +88,7 @@ class HomeViewModel
     }
     // endregion
 
-    fun refresh() {
+    private fun refresh() {
         getTiming()
         if (userRepository.needRegister()) {
             registerUser()

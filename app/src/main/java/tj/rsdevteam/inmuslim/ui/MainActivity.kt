@@ -47,7 +47,9 @@ fun Navigation(navHostController: NavHostController) {
             })
         }
         composable(Route.SETTINGS) {
-            SettingsScreen()
+            SettingsScreen(popBackStack = {
+                navHostController.popBackStack()
+            })
         }
     }
 }
