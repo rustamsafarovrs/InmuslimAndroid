@@ -2,6 +2,10 @@
 
 This repo contains the official source code for [Inmuslim App for Android](https://play.google.com/store/apps/details?id=tj.rsdevteam.inmuslim).
 
+### Install
+
+If you're just looking to install Inmuslim Android, you can find it on [Google Play](https://play.google.com/store/apps/details?id=tj.rsdevteam.inmuslim).
+
 ![PlayBadge](https://PlayBadges.pavi2410.me/badge/full?id=tj.rsdevteam.inmuslim)
 
 ### Compilation Guide
