@@ -93,19 +93,19 @@ fun HomeScreen(
 private fun TimeItems(timing: Timing) {
     Column {
         Spacer(modifier = Modifier.height(20.dp))
-        TimeItem(title = "Бомдод", start = timing.fajr)
+        TimeItem(title = stringResource(R.string.fajr), start = timing.fajr)
         Spacer(modifier = Modifier.height(12.dp))
-        TimeItem(title = "Тулӯи офтоб", start = timing.sunrise)
+        TimeItem(title = stringResource(R.string.sunrise), start = timing.sunrise)
         Spacer(modifier = Modifier.height(12.dp))
-        TimeItem(title = "Пешин", start = timing.zuhr)
+        TimeItem(title = stringResource(R.string.zuhr), start = timing.zuhr)
         Spacer(modifier = Modifier.height(12.dp))
-        TimeItem(title = "Аср", start = timing.asr)
+        TimeItem(title = stringResource(R.string.asr), start = timing.asr)
         Spacer(modifier = Modifier.height(12.dp))
-        TimeItem(title = "Гуруби офтоб", start = timing.sunset)
+        TimeItem(title = stringResource(R.string.sunset), start = timing.sunset)
         Spacer(modifier = Modifier.height(12.dp))
-        TimeItem(title = "Шом", start = timing.maghrib)
+        TimeItem(title = stringResource(R.string.maghrib), start = timing.maghrib)
         Spacer(modifier = Modifier.height(12.dp))
-        TimeItem(title = "Хуфтан", start = timing.isha)
+        TimeItem(title = stringResource(R.string.isha), start = timing.isha)
         Spacer(modifier = Modifier.weight(1f))
     }
 }

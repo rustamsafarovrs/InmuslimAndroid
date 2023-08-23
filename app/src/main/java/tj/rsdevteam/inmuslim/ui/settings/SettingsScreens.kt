@@ -128,8 +128,8 @@ fun SettingsScreen(popBackStack: () -> Unit) {
         ) {
             SettingItem(
                 icon = Icons.Outlined.LocationOn,
-                title = "Change Region",
-                desc = "Change to another Region",
+                title = stringResource(R.string.change_region),
+                desc = stringResource(R.string.change_region_desc),
                 onClick = { regionsBottomSheetState = true }
             )
             Spacer(modifier = Modifier.height(12.dp))
