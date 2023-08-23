@@ -4,6 +4,7 @@ package tj.rsdevteam.inmuslim.config
  * Created by Rustam Safarov on 8/13/23.
  * github.com/rustamsafarovrs
  */
+
 object BuildVars {
 
     val BUILD_TYPE = BuildType.TEST
