@@ -51,3 +51,10 @@ _Soon..._
 - Java 17
 - Android Studio Arctic Fox (for easy download - [JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/))
 
+## Contributing
+
+Read our [Contributing Guide](CONTRIBUTING.md) to learn about reporting issues, contributing code, and more ways to contribute.
+
+## Documentation
+
+- [Pull Request Guidelines](docs/pull-request-guidelines.md) - branch naming and how to write good pull requests
