@@ -2,13 +2,13 @@
 
 This repo contains the official source code for [Inmuslim App for Android](https://play.google.com/store/apps/details?id=tj.rsdevteam.inmuslim).
 
-### Install
+## Install
 
 If you're just looking to install Inmuslim Android, you can find it on [Google Play](https://play.google.com/store/apps/details?id=tj.rsdevteam.inmuslim).
 
 ![PlayBadge](https://PlayBadges.pavi2410.me/badge/full?id=tj.rsdevteam.inmuslim)
 
-### Compilation Guide
+## Compilation Guide
 
 You will require Android Studio Giraffe (2022.3.1) and Android SDK 33
 
@@ -18,9 +18,9 @@ You will require Android Studio Giraffe (2022.3.1) and Android SDK 33
 4. Open the project in the Studio (note that it should be opened, NOT imported).
 5. You are ready to compile project.
 
-### Technologies
+## Technologies
 
-#### Core
+### Core
 
 - Kotlin
 - Jetpack Compose (UI & navigation)
@@ -28,25 +28,25 @@ You will require Android Studio Giraffe (2022.3.1) and Android SDK 33
 - Hilt (DI)
 - Kotlin Coroutines
 
-#### Networking
+### Networking
 
 - Retrofit (REST API)
 - OkHttp 3 (REST client)
 - Moshi (JSON serialization)
 
-#### Local Persistence
+### Local Persistence
 
 - Shared Preferences
 
-#### Other
+### Other
 
 - Firebase Crashlytics (crashes, logging)
 
-#### CI/CD
+### CI/CD
 
 _Soon..._
 
-### Project Requirements
+## Project Requirements
 
 - Java 17
 - Android Studio Arctic Fox (for easy download - [JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/))
