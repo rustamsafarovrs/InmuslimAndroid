@@ -2,7 +2,7 @@
 
 ## Main Branch
 
-The `develop` branch represents the latest version. This is what you want to fork and base your feature branch on.
+The `develop` branch represents the latest dev version. This is what you want to fork and base your feature branch on.
 
 ## Branch Naming
 

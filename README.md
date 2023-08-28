@@ -6,7 +6,7 @@ This repo contains the official source code for [Inmuslim App for Android](https
 
 ## Install
 
-If you're just looking to install Inmuslim Android, you can find it on [Google Play](https://play.google.com/store/apps/details?id=tj.rsdevteam.inmuslim).
+If you're just looking to install Inmuslim, you can find it on [Google Play](https://play.google.com/store/apps/details?id=tj.rsdevteam.inmuslim).
 
 ## Compilation Guide
 
@@ -49,7 +49,7 @@ _Soon..._
 ## Project Requirements
 
 - Java 17
-- Android Studio Arctic Fox (for easy download - [JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/))
+- Android Studio Giraffe (2022.3.1) (for easy download - [JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/))
 
 ## Contributing
 
@@ -57,4 +57,4 @@ Read our [Contributing Guide](CONTRIBUTING.md) to learn about reporting issues, 
 
 ## Documentation
 
-- [Pull Request Guidelines](docs/pull-request-guidelines.md) - branch naming and how to write good pull requests
+- [Pull Request Guidelines](docs/pull-request-guidelines.md) - branch naming and how to write good pull requests.
