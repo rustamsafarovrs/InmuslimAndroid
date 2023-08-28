@@ -8,7 +8,7 @@
 
 ### Workflow
 
-1. Browse [Inmuslim Issues](https://github.com/rustamsafarovrs/InmuslimAnroid/issues).
+1. Browse [Inmuslim Issues](https://github.com/rustamsafarovrs/InmuslimAndroid/issues).
 2. Choose a ticket that you understand and intrigues you.
 3. Comment `"I'm on it"` on the ticket to let other contributors know that you're working on it.
 
