@@ -1,7 +1,8 @@
 1.0.2
 -----
 
-
+* Updates:
+  * Changed http to https in API url.
 
 1.0.1
 -----

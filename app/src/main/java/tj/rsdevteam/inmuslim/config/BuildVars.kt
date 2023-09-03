@@ -14,7 +14,7 @@ object BuildVars {
             "http://rsdevteam.ru:8088/inmuslim/staging/api/"
         }
         BuildType.PROD -> {
-            "http://rsdevteam.ru/inmuslim/api/"
+            "https://rsdevteam.ru/inmuslim/api/"
         }
     }
 }
