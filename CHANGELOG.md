@@ -1,7 +1,8 @@
 1.0.3
 -----
 
-
+* Bug Fixes:
+  * Fixed Confirm button position in Select Region screen.
 
 1.0.2
 -----
