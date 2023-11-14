@@ -33,8 +33,8 @@ import tj.rsdevteam.inmuslim.ui.theme.InmuslimTypography
  */
 
 @Composable
-fun Regions(list: List<Region>, onClick: (Region) -> Unit) {
-    LazyColumn {
+fun Regions(list: List<Region>, modifier: Modifier = Modifier, onClick: (Region) -> Unit) {
+    LazyColumn(modifier = modifier) {
         items(list) { region ->
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -68,10 +68,13 @@ fun RegionScreen(viewModel: RegionViewModel = hiltViewModel(), onSelected: () ->
                 modifier = Modifier.padding(horizontal = 20.dp)
             )
             Spacer(modifier = Modifier.height(20.dp))
-            Regions(viewModel.list.value) {
+            Regions(
+                viewModel.list.value,
+                modifier = Modifier.weight(1f, fill = false),
+            ) {
                 viewModel.onRegionSelected(it)
             }
-            Spacer(modifier = Modifier.weight(1f))
+            Spacer(modifier = Modifier.height(12.dp))
             PrimaryButton(text = "OK") {
                 viewModel.onConfirmBtnClick()
                 onSelected.invoke()
