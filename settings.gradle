@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Inmuslim"
+rootProject.name = "inmuslim-android"
 include ':app'
