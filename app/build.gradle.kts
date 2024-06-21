@@ -9,7 +9,6 @@ plugins {
     id("kotlin-kapt")
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
-    id("io.gitlab.arturbosch.detekt")
 }
 
 android {
@@ -78,13 +77,6 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-}
-
-detekt {
-    toolVersion = "1.23.0"
-    config = files("config/detekt/detekt.yml")
-    buildUponDefaultConfig = true
-    baseline = file("$rootDir/detekt-baseline.xml")
 }
 
 dependencies {

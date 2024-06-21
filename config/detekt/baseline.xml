@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>ArgumentListWrapping:HomeScreens.kt$( title = { Text(text = stringResource(id = R.string.app_name)) }, actions = { IconButton(onClick = { navigateToSettings.invoke() }) { Icon(imageVector = Icons.Outlined.Settings, contentDescription = "Settings") } })</ID>
+    <ID>ArgumentListWrapping:Type.kt$( fontSize = 11.sp, lineHeight = 16.sp, letterSpacing = 0.5.sp, fontWeight = FontWeight.Medium )</ID>
+    <ID>ArgumentListWrapping:Type.kt$( fontSize = 12.sp, lineHeight = 16.sp, letterSpacing = 0.5.sp, fontWeight = FontWeight.Medium )</ID>
+    <ID>ArgumentListWrapping:Type.kt$( fontSize = 14.sp, lineHeight = 20.sp, letterSpacing = 0.1.sp, fontWeight = FontWeight.Medium )</ID>
+    <ID>ArgumentListWrapping:Type.kt$( fontSize = 22.sp, lineHeight = 28.sp, letterSpacing = 0.sp, lineBreak = LineBreak.Heading )</ID>
+    <ID>ArgumentListWrapping:Type.kt$( fontSize = 24.sp, lineHeight = 32.sp, letterSpacing = 0.sp, lineBreak = LineBreak.Heading )</ID>
+    <ID>ArgumentListWrapping:Type.kt$( fontSize = 28.sp, lineHeight = 36.sp, letterSpacing = 0.sp, lineBreak = LineBreak.Heading )</ID>
+    <ID>ArgumentListWrapping:Type.kt$( fontSize = 32.sp, lineHeight = 40.sp, letterSpacing = 0.sp, lineBreak = LineBreak.Heading )</ID>
+    <ID>ArgumentListWrapping:Type.kt$( fontSize = 36.sp, lineHeight = 44.sp, letterSpacing = 0.sp )</ID>
+    <ID>ArgumentListWrapping:Type.kt$( fontSize = 45.sp, lineHeight = 52.sp, letterSpacing = 0.sp )</ID>
+    <ID>ArgumentListWrapping:Type.kt$( fontSize = 57.sp, lineHeight = 64.sp, letterSpacing = (-0.25).sp )</ID>
+    <ID>ChainWrapping:MessagingService.kt$MessagingService$&amp;&amp;</ID>
+    <ID>ImportOrdering:MessagingService.kt$import android.app.NotificationChannel import android.app.NotificationManager import android.app.PendingIntent import android.content.Context import android.content.Intent import android.graphics.Bitmap import android.graphics.BitmapFactory import android.os.Build import android.util.Log import androidx.core.app.NotificationCompat import com.google.firebase.messaging.FirebaseMessagingService import com.google.firebase.messaging.RemoteMessage import dagger.hilt.android.AndroidEntryPoint import okhttp3.OkHttpClient import okhttp3.Request import tj.rsdevteam.inmuslim.ui.MainActivity import tj.rsdevteam.inmuslim.R import tj.rsdevteam.inmuslim.data.preferences.Preferences import java.io.IOException import javax.inject.Inject</ID>
+    <ID>NoBlankLineBeforeRbrace:ErrorHandler.kt$ErrorHandler$ </ID>
+    <ID>NoBlankLineBeforeRbrace:Resource.kt$Resource$ </ID>
+    <ID>NoConsecutiveBlankLines:Preferences.kt$Preferences$ </ID>
+    <ID>SpacingAroundColon:App.kt$App$:</ID>
+    <ID>SpacingAroundCurly:MessagingService.kt$MessagingService${</ID>
+    <ID>SpacingAroundOperators:Dialogs.kt$=</ID>
+    <ID>Wrapping:HomeScreens.kt$(</ID>
+  </CurrentIssues>
+</SmellBaseline>
