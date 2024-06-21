@@ -14,3 +14,7 @@
 .cxx
 local.properties
 /app/config/release.keystore
+/.idea/appInsightsSettings.xml
+/.idea/deploymentTargetSelector.xml
+/.idea/migrations.xml
+/.idea/other.xml
