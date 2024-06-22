@@ -29,7 +29,7 @@ android {
     }
     signingConfigs {
         getByName("debug") {
-            storeFile = file("config/debug.keystore")
+            storeFile = file("$rootDir/config/debug.keystore")
             storePassword = project.properties["DEBUG_STORE_PASSWORD"] as String
             keyAlias = project.properties["DEBUG_KEY_ALIAS"] as String
             keyPassword = project.properties["DEBUG_KEY_PASSWORD"] as String
