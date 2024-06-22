@@ -35,13 +35,16 @@ android {
             keyPassword = project.properties["DEBUG_KEY_PASSWORD"] as String
         }
         create("release") {
-            val properties = Properties().apply {
-                load(FileInputStream(File(rootProject.rootDir, "local.properties")))
+            val localPropertiesFile = File(rootProject.rootDir, "local.properties")
+            if (localPropertiesFile.exists()) {
+                val properties = Properties().apply {
+                    load(FileInputStream(localPropertiesFile))
+                }
+                storeFile = file("$rootDir/config/release.keystore")
+                storePassword = properties.getProperty("RELEASE_STORE_PASSWORD", "")
+                keyAlias = properties.getProperty("RELEASE_KEY_ALIAS", "")
+                keyPassword = properties.getProperty("RELEASE_KEY_PASSWORD", "")
             }
-            storeFile = file("$rootDir/config/release.keystore")
-            storePassword = properties.getProperty("RELEASE_STORE_PASSWORD", "")
-            keyAlias = properties.getProperty("RELEASE_KEY_ALIAS", "")
-            keyPassword = properties.getProperty("RELEASE_KEY_PASSWORD", "")
         }
     }
     buildTypes {
