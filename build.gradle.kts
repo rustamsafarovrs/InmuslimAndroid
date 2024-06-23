@@ -1,12 +1,13 @@
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 
 plugins {
-    id("com.android.application") version "8.5.0" apply false
-    id("org.jetbrains.kotlin.android") version "1.8.10" apply false
-    id("com.google.dagger.hilt.android") version "2.44" apply false
-    id("io.gitlab.arturbosch.detekt") version "1.23.6" apply false
-    id("com.google.gms.google-services") version "4.3.15" apply false
-    id("com.google.firebase.crashlytics") version "2.9.8" apply false
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.jetbrains.kotlin.android) apply false
+    alias(libs.plugins.jetbrains.kotlin.kapt) apply false
+    alias(libs.plugins.dagger.hilt.android) apply false
+    alias(libs.plugins.detekt) apply false
+    alias(libs.plugins.google.services) apply false
+    alias(libs.plugins.firebase.crashlytics) apply false
 }
 
 allprojects.onEach { project ->
