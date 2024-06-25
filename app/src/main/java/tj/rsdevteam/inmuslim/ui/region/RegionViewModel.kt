@@ -7,7 +7,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import tj.rsdevteam.inmuslim.data.models.DialogState
 import tj.rsdevteam.inmuslim.data.models.Region
-import tj.rsdevteam.inmuslim.data.models.network.Resource
+import tj.rsdevteam.inmuslim.data.models.Resource
 import tj.rsdevteam.inmuslim.data.repositories.RegionRepository
 import javax.inject.Inject
 

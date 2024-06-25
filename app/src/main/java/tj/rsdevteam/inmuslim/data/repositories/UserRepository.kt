@@ -6,11 +6,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 import tj.rsdevteam.inmuslim.data.api.Api
-import tj.rsdevteam.inmuslim.data.models.network.RegisterUserBody
-import tj.rsdevteam.inmuslim.data.models.network.RegisterUserResponse
-import tj.rsdevteam.inmuslim.data.models.network.Resource
-import tj.rsdevteam.inmuslim.data.models.network.UpdateMessagingIdBody
-import tj.rsdevteam.inmuslim.data.models.network.UpdateMessagingIdResponse
+import tj.rsdevteam.inmuslim.data.models.Message
+import tj.rsdevteam.inmuslim.data.models.Resource
+import tj.rsdevteam.inmuslim.data.models.User
+import tj.rsdevteam.inmuslim.data.models.api.RegisterUserBodyDTO
+import tj.rsdevteam.inmuslim.data.models.api.UpdateMessagingIdBodyDTO
 import tj.rsdevteam.inmuslim.data.preferences.Preferences
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -29,18 +29,18 @@ class UserRepository
     private val errorHandler: ErrorHandler
 ) {
 
-    fun registerUser(body: RegisterUserBody): Flow<Resource<RegisterUserResponse>> = flow {
+    fun registerUser(name: String): Flow<Resource<User>> = flow {
         emit(Resource.InProgress())
-        val result = api.registerUser(body)
+        val result = api.registerUser(RegisterUserBodyDTO(name = name))
         if (result.isSuccess && result.getOrNull()?.result == 0) {
             preferences.saveUserId(result.getOrThrow().id)
-            emit(Resource.Success(result.getOrThrow()))
+            emit(Resource.Success(result.getOrThrow().toUser()))
         } else {
             emit(errorHandler.getError(result))
         }
     }
 
-    fun updateMessagingId(): Flow<Resource<UpdateMessagingIdResponse>> = flow {
+    fun updateMessagingId(): Flow<Resource<Message>> = flow {
         emit(Resource.InProgress())
         var msgid = ""
         withContext(Dispatchers.IO) {
@@ -48,10 +48,10 @@ class UserRepository
                 msgid = token
             }
         }
-        val result = api.updateMessagingId(UpdateMessagingIdBody(id = preferences.getUserId(), msgid = msgid))
+        val result = api.updateMessagingId(UpdateMessagingIdBodyDTO(id = preferences.getUserId(), msgid = msgid))
         if (result.isSuccess && result.getOrNull()?.result == 0) {
             preferences.saveFirebaseToken(msgid)
-            emit(Resource.Success(result.getOrThrow()))
+            emit(Resource.Success(result.getOrThrow().toMessage()))
         } else {
             emit(errorHandler.getError(result))
         }

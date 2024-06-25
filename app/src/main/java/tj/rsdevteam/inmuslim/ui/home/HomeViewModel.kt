@@ -6,9 +6,8 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import tj.rsdevteam.inmuslim.data.models.DialogState
+import tj.rsdevteam.inmuslim.data.models.Resource
 import tj.rsdevteam.inmuslim.data.models.Timing
-import tj.rsdevteam.inmuslim.data.models.network.RegisterUserBody
-import tj.rsdevteam.inmuslim.data.models.network.Resource
 import tj.rsdevteam.inmuslim.data.repositories.TimingRepository
 import tj.rsdevteam.inmuslim.data.repositories.UserRepository
 import tj.rsdevteam.inmuslim.utils.Utils
@@ -51,7 +50,7 @@ class HomeViewModel
                 .collect { rs ->
                     when (rs) {
                         is Resource.InProgress -> Unit
-                        is Resource.Success -> timing.value = rs.data.timing
+                        is Resource.Success -> timing.value = rs.data
                         is Resource.Error -> dialogState.value = DialogState(rs.error?.message)
                     }
                     showLoading.value = rs is Resource.InProgress
@@ -61,7 +60,7 @@ class HomeViewModel
 
     private fun registerUser() {
         viewModelScope.launch {
-            userRepository.registerUser(RegisterUserBody(Utils.getDeviceInfo()))
+            userRepository.registerUser(Utils.getDeviceInfo())
                 .collect { rs ->
                     when (rs) {
                         is Resource.InProgress -> Unit

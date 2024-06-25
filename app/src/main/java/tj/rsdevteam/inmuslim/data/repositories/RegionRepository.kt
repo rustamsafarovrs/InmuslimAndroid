@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.flow
 import tj.rsdevteam.inmuslim.data.api.Api
 import tj.rsdevteam.inmuslim.data.constants.Constants
 import tj.rsdevteam.inmuslim.data.models.Region
-import tj.rsdevteam.inmuslim.data.models.network.Resource
+import tj.rsdevteam.inmuslim.data.models.Resource
 import tj.rsdevteam.inmuslim.data.preferences.Preferences
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -34,7 +34,7 @@ class RegionRepository
         val result = api.getRegions()
         delay(Constants.MIDDLE_DELAY)
         if (result.isSuccess && result.getOrNull()?.result == 0) {
-            emit(Resource.Success(result.getOrThrow().regions))
+            emit(Resource.Success(result.getOrThrow().regions.map { it.toRegion() }))
         } else {
             emit(errorHandler.getError(result))
         }

@@ -1,4 +1,4 @@
-package tj.rsdevteam.inmuslim.data.models.network
+package tj.rsdevteam.inmuslim.data.models
 
 /**
  * Created by Rustam Safarov on 8/13/23.

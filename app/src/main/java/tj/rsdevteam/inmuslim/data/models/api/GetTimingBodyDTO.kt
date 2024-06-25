@@ -1,4 +1,4 @@
-package tj.rsdevteam.inmuslim.data.models.network
+package tj.rsdevteam.inmuslim.data.models.api
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -9,7 +9,7 @@ import com.squareup.moshi.JsonClass
  */
 
 @JsonClass(generateAdapter = true)
-data class GetTimingBody(
+data class GetTimingBodyDTO(
     @Json(name = "region_id")
     val regionId: Long
 )

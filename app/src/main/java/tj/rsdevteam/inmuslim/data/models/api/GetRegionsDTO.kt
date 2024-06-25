@@ -1,7 +1,6 @@
-package tj.rsdevteam.inmuslim.data.models.network
+package tj.rsdevteam.inmuslim.data.models.api
 
 import com.squareup.moshi.JsonClass
-import tj.rsdevteam.inmuslim.data.models.Region
 
 /**
  * Created by Rustam Safarov on 14/08/23.
@@ -9,8 +8,8 @@ import tj.rsdevteam.inmuslim.data.models.Region
  */
 
 @JsonClass(generateAdapter = true)
-data class GetRegionsResponse(
+data class GetRegionsDTO(
     val result: Int,
     val msg: String,
-    val regions: List<Region>
+    val regions: List<RegionDTO>
 )

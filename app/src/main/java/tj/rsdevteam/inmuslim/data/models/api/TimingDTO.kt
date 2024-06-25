@@ -1,11 +1,14 @@
-package tj.rsdevteam.inmuslim.data.models
+package tj.rsdevteam.inmuslim.data.models.api
+
+import com.squareup.moshi.JsonClass
 
 /**
- * Created by Rustam Safarov on 6/25/24.
+ * Created by Rustam Safarov on 8/13/23.
  * github.com/rustamsafarovrs
  */
 
-data class Timing(
+@JsonClass(generateAdapter = true)
+data class TimingDTO(
     val fajr: String,
     val sunrise: String,
     val zuhr: String,

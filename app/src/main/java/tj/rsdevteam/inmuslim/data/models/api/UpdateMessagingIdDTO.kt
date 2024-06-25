@@ -1,4 +1,4 @@
-package tj.rsdevteam.inmuslim.data.models.network
+package tj.rsdevteam.inmuslim.data.models.api
 
 import com.squareup.moshi.JsonClass
 
@@ -8,7 +8,7 @@ import com.squareup.moshi.JsonClass
  */
 
 @JsonClass(generateAdapter = true)
-data class UpdateMessagingIdBody(
-    val id: Long,
-    val msgid: String
+data class UpdateMessagingIdDTO(
+    val result: Int,
+    val msg: String
 )

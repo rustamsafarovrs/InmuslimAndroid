@@ -4,8 +4,8 @@ import retrofit2.HttpException
 import tj.rsdevteam.inmuslim.data.exceptions.ApiException
 import tj.rsdevteam.inmuslim.data.exceptions.ConnectionTimeoutException
 import tj.rsdevteam.inmuslim.data.exceptions.UnknownException
-import tj.rsdevteam.inmuslim.data.models.network.MessageResponse
-import tj.rsdevteam.inmuslim.data.models.network.Resource
+import tj.rsdevteam.inmuslim.data.models.Resource
+import tj.rsdevteam.inmuslim.data.models.api.MessageDTO
 import java.io.IOException
 import java.net.UnknownHostException
 
@@ -17,8 +17,8 @@ import java.net.UnknownHostException
 class ErrorHandler {
 
     fun <T : Any> getError(result: Result<*>): Resource<T> {
-        return if (result.getOrNull() is MessageResponse) {
-            Resource.Error(error = ApiException((result.getOrThrow() as MessageResponse).msg))
+        return if (result.getOrNull() is MessageDTO) {
+            Resource.Error(error = ApiException((result.getOrThrow() as MessageDTO).msg))
         } else if (result.exceptionOrNull() is UnknownHostException) {
             Resource.Error(error = ConnectionTimeoutException())
         } else if (result.exceptionOrNull() is HttpException) {
