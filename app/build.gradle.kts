@@ -56,11 +56,13 @@ android {
                 "proguard-rules.pro"
             )
             signingConfig = signingConfigs.getByName("release")
+            buildConfigField("String", "BASE_URL", "\"https://rsdevteam.ru/inmuslim/api/\"")
         }
         debug {
             isDebuggable = true
             applicationIdSuffix = ".beta"
             signingConfig = signingConfigs.getByName("debug")
+            buildConfigField("String", "BASE_URL", "\"https://rsdevteam.ru/inmuslim/api/\"")
         }
     }
     compileOptions {
@@ -72,6 +74,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
