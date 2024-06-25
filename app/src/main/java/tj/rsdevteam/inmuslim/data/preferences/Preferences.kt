@@ -34,7 +34,6 @@ class Preferences(context: Context) {
 
     fun getUserId() = prefs.getLong(PREFS_USER_ID, -1)
 
-
     fun saveFirebaseToken(token: String) {
         editor.putString(PREFS_FIREBASE_TOKEN, token).apply()
     }

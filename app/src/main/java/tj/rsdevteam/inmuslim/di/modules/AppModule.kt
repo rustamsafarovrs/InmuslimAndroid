@@ -68,8 +68,8 @@ class AppModule {
     }
 
     @Provides
-    fun provideErrorHandler(moshi: Moshi): ErrorHandler {
-        return ErrorHandler(moshi)
+    fun provideErrorHandler(): ErrorHandler {
+        return ErrorHandler()
     }
 
     @Provides
