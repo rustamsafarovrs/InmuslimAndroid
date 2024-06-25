@@ -10,15 +10,12 @@ import android.content.SharedPreferences
 
 class Preferences(context: Context) {
 
-    private val prefs: SharedPreferences
-    private val editor: SharedPreferences.Editor
-
-    init {
-        prefs = context.getSharedPreferences("prefs", Context.MODE_PRIVATE)
-        editor = prefs.edit()
-    }
+    private val prefs: SharedPreferences = context.getSharedPreferences(PREFS_FILE_NAME, Context.MODE_PRIVATE)
+    private val editor: SharedPreferences.Editor = prefs.edit()
 
     companion object {
+
+        const val PREFS_FILE_NAME = "prefs"
 
         const val PREFS_REGION_ID = "region_id"
         const val PREFS_USER_ID = "user_id"
