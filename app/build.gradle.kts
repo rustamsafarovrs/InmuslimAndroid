@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.jetbrains.kotlin.kapt)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.dagger.hilt.android)
     alias(libs.plugins.google.services)
     alias(libs.plugins.firebase.crashlytics)
@@ -122,7 +123,7 @@ dependencies {
     implementation(libs.retrofit.moshi)
     implementation(libs.moshi)
     implementation(libs.moshi.kotlin)
-    kapt(libs.moshi.kotlin.codegen)
+    ksp(libs.moshi.kotlin.codegen)
 
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.messaging.ktx)
