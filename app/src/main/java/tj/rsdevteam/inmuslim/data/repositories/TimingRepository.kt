@@ -16,7 +16,6 @@ import javax.inject.Singleton
  */
 
 @Singleton
-@Suppress("TooGenericExceptionCaught")
 class TimingRepository
 @Inject constructor(
     private val api: Api,

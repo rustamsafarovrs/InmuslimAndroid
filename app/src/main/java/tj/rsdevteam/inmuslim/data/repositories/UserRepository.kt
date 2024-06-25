@@ -21,7 +21,6 @@ import javax.inject.Singleton
  */
 
 @Singleton
-@Suppress("TooGenericExceptionCaught")
 class UserRepository
 @Inject constructor(
     private val api: Api,

@@ -15,7 +15,6 @@ import javax.inject.Singleton
  */
 
 @Singleton
-@Suppress("TooGenericExceptionCaught")
 class RegionRepository
 @Inject constructor(
     private val api: Api,
