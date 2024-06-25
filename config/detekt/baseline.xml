@@ -15,9 +15,6 @@
     <ID>ArgumentListWrapping:Type.kt$( fontSize = 57.sp, lineHeight = 64.sp, letterSpacing = (-0.25).sp )</ID>
     <ID>ChainWrapping:MessagingService.kt$MessagingService$&amp;&amp;</ID>
     <ID>ImportOrdering:MessagingService.kt$import android.app.NotificationChannel import android.app.NotificationManager import android.app.PendingIntent import android.content.Context import android.content.Intent import android.graphics.Bitmap import android.graphics.BitmapFactory import android.os.Build import android.util.Log import androidx.core.app.NotificationCompat import com.google.firebase.messaging.FirebaseMessagingService import com.google.firebase.messaging.RemoteMessage import dagger.hilt.android.AndroidEntryPoint import okhttp3.OkHttpClient import okhttp3.Request import tj.rsdevteam.inmuslim.ui.MainActivity import tj.rsdevteam.inmuslim.R import tj.rsdevteam.inmuslim.data.preferences.Preferences import java.io.IOException import javax.inject.Inject</ID>
-    <ID>NoBlankLineBeforeRbrace:ErrorHandler.kt$ErrorHandler$ </ID>
-    <ID>NoBlankLineBeforeRbrace:Resource.kt$Resource$ </ID>
-    <ID>NoConsecutiveBlankLines:Preferences.kt$Preferences$ </ID>
     <ID>SpacingAroundColon:App.kt$App$:</ID>
     <ID>SpacingAroundCurly:MessagingService.kt$MessagingService${</ID>
     <ID>SpacingAroundOperators:Dialogs.kt$=</ID>

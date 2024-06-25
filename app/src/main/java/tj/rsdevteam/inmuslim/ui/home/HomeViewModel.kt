@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 import tj.rsdevteam.inmuslim.data.models.DialogState
 import tj.rsdevteam.inmuslim.data.models.Timing
 import tj.rsdevteam.inmuslim.data.models.network.RegisterUserBody
-import tj.rsdevteam.inmuslim.data.models.network.Status
+import tj.rsdevteam.inmuslim.data.models.network.Resource
 import tj.rsdevteam.inmuslim.data.repositories.TimingRepository
 import tj.rsdevteam.inmuslim.data.repositories.UserRepository
 import tj.rsdevteam.inmuslim.utils.Utils
@@ -49,12 +49,12 @@ class HomeViewModel
         viewModelScope.launch {
             timingRepository.getTiming()
                 .collect { rs ->
-                    when (rs.status) {
-                        Status.LOADING -> Unit
-                        Status.SUCCESS -> timing.value = rs.data!!.timing
-                        Status.ERROR -> dialogState.value = DialogState(rs.message)
+                    when (rs) {
+                        is Resource.InProgress -> Unit
+                        is Resource.Success -> timing.value = rs.data.timing
+                        is Resource.Error -> dialogState.value = DialogState(rs.error?.message)
                     }
-                    showLoading.value = rs.status == Status.LOADING
+                    showLoading.value = rs is Resource.InProgress
                 }
         }
     }
@@ -63,10 +63,10 @@ class HomeViewModel
         viewModelScope.launch {
             userRepository.registerUser(RegisterUserBody(Utils.getDeviceInfo()))
                 .collect { rs ->
-                    when (rs.status) {
-                        Status.LOADING -> Unit
-                        Status.SUCCESS -> updateMessagingId()
-                        Status.ERROR -> Unit
+                    when (rs) {
+                        is Resource.InProgress -> Unit
+                        is Resource.Success -> updateMessagingId()
+                        is Resource.Error -> Unit
                     }
                 }
         }
@@ -76,10 +76,10 @@ class HomeViewModel
         viewModelScope.launch {
             userRepository.updateMessagingId()
                 .collect { rs ->
-                    when (rs.status) {
-                        Status.LOADING -> Unit
-                        Status.SUCCESS -> Unit
-                        Status.ERROR -> Unit
+                    when (rs) {
+                        is Resource.InProgress -> Unit
+                        is Resource.Success -> Unit
+                        is Resource.Error -> Unit
                     }
                 }
         }

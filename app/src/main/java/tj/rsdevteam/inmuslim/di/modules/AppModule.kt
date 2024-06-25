@@ -1,6 +1,7 @@
 package tj.rsdevteam.inmuslim.di.modules
 
 import android.content.Context
+import com.skydoves.retrofit.adapters.result.ResultCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -62,6 +63,7 @@ class AppModule {
     fun provideRetrofit(moshi: Moshi, client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .addCallAdapterFactory(ResultCallAdapterFactory.create())
             .client(client)
             .baseUrl(BuildVars.BASE_URL)
             .build()

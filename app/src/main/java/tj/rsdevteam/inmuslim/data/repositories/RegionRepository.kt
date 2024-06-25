@@ -30,23 +30,13 @@ class RegionRepository
     fun saveRegionId(id: Long) = preferences.saveRegionId(id)
 
     fun getRegions(): Flow<Resource<List<Region>>> = flow {
-        try {
-            emit(Resource.loading())
-            val response = api.getRegions()
-            delay(Constants.MIDDLE_DELAY)
-            if (response.isSuccessful && response.body()?.result == 0) {
-                emit(Resource.success(response.body()!!.regions))
-            } else {
-                emit(
-                    errorHandler.getError(
-                        response.code(),
-                        response.errorBody(),
-                        response.body()
-                    )
-                )
-            }
-        } catch (e: Exception) {
-            emit(errorHandler.getError(e))
+        emit(Resource.InProgress())
+        val result = api.getRegions()
+        delay(Constants.MIDDLE_DELAY)
+        if (result.isSuccess && result.getOrNull()?.result == 0) {
+            emit(Resource.Success(result.getOrThrow().regions))
+        } else {
+            emit(errorHandler.getError(result))
         }
     }
 }

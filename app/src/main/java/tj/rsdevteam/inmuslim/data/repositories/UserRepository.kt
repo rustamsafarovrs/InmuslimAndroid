@@ -30,55 +30,30 @@ class UserRepository
 ) {
 
     fun registerUser(body: RegisterUserBody): Flow<Resource<RegisterUserResponse>> = flow {
-        try {
-            emit(Resource.loading())
-            val response = api.registerUser(body)
-            if (response.isSuccessful && response.body()?.result == 0) {
-                preferences.saveUserId(response.body()!!.id)
-                emit(Resource.success(response.body()!!))
-            } else {
-                emit(
-                    errorHandler.getError(
-                        response.code(),
-                        response.errorBody(),
-                        response.body()
-                    )
-                )
-            }
-        } catch (e: Exception) {
-            emit(errorHandler.getError(e))
+        emit(Resource.InProgress())
+        val result = api.registerUser(body)
+        if (result.isSuccess && result.getOrNull()?.result == 0) {
+            preferences.saveUserId(result.getOrThrow().id)
+            emit(Resource.Success(result.getOrThrow()))
+        } else {
+            emit(errorHandler.getError(result))
         }
     }
 
     fun updateMessagingId(): Flow<Resource<UpdateMessagingIdResponse>> = flow {
-        try {
-            emit(Resource.loading())
-            var msgid = ""
-            withContext(Dispatchers.IO) {
-                FirebaseMessaging.getInstance().token.addOnSuccessListener { token ->
-                    msgid = token
-                }
+        emit(Resource.InProgress())
+        var msgid = ""
+        withContext(Dispatchers.IO) {
+            FirebaseMessaging.getInstance().token.addOnSuccessListener { token ->
+                msgid = token
             }
-            val response = api.updateMessagingId(
-                UpdateMessagingIdBody(
-                    id = preferences.getUserId(),
-                    msgid = msgid
-                )
-            )
-            if (response.isSuccessful && response.body()?.result == 0) {
-                preferences.saveFirebaseToken(msgid)
-                emit(Resource.success(response.body()!!))
-            } else {
-                emit(
-                    errorHandler.getError(
-                        response.code(),
-                        response.errorBody(),
-                        response.body()
-                    )
-                )
-            }
-        } catch (e: Exception) {
-            emit(errorHandler.getError(e))
+        }
+        val result = api.updateMessagingId(UpdateMessagingIdBody(id = preferences.getUserId(), msgid = msgid))
+        if (result.isSuccess && result.getOrNull()?.result == 0) {
+            preferences.saveFirebaseToken(msgid)
+            emit(Resource.Success(result.getOrThrow()))
+        } else {
+            emit(errorHandler.getError(result))
         }
     }
 
@@ -86,7 +61,11 @@ class UserRepository
         return preferences.getUserId() == -1L
     }
 
-    fun getUserId() = preferences.getUserId()
+    fun getUserId(): Long {
+        return preferences.getUserId()
+    }
 
-    fun getFirebaseToken() = preferences.getFirebaseToken()
+    fun getFirebaseToken(): String {
+        return preferences.getFirebaseToken()
+    }
 }

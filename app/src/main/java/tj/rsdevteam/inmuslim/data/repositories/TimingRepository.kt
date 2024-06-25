@@ -27,23 +27,13 @@ class TimingRepository
 ) {
 
     fun getTiming(): Flow<Resource<GetTimingResponse>> = flow {
-        try {
-            emit(Resource.loading())
-            val response = api.getTiming(GetTimingBody(regionId = preferences.getRegionId()))
-            delay(Constants.MIDDLE_DELAY)
-            if (response.isSuccessful && response.body()?.result == 0) {
-                emit(Resource.success(response.body()!!))
-            } else {
-                emit(
-                    errorHandler.getError(
-                        response.code(),
-                        response.errorBody(),
-                        response.body()
-                    )
-                )
-            }
-        } catch (e: Exception) {
-            emit(errorHandler.getError(e))
+        emit(Resource.InProgress())
+        val result = api.getTiming(GetTimingBody(regionId = preferences.getRegionId()))
+        delay(Constants.MIDDLE_DELAY)
+        if (result.isSuccess && result.getOrNull()?.result == 0) {
+            emit(Resource.Success(result.getOrThrow()))
+        } else {
+            emit(errorHandler.getError(result))
         }
     }
 }

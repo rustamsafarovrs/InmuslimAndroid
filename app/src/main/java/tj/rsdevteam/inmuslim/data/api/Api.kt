@@ -1,6 +1,5 @@
 package tj.rsdevteam.inmuslim.data.api
 
-import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -20,14 +19,14 @@ import tj.rsdevteam.inmuslim.data.models.network.UpdateMessagingIdResponse
 interface Api {
 
     @GET("GetRegions")
-    suspend fun getRegions(): Response<GetRegionsResponse>
+    suspend fun getRegions(): Result<GetRegionsResponse>
 
     @POST("GetTiming")
-    suspend fun getTiming(@Body body: GetTimingBody): Response<GetTimingResponse>
+    suspend fun getTiming(@Body body: GetTimingBody): Result<GetTimingResponse>
 
     @POST("RegisterUser")
-    suspend fun registerUser(@Body body: RegisterUserBody): Response<RegisterUserResponse>
+    suspend fun registerUser(@Body body: RegisterUserBody): Result<RegisterUserResponse>
 
     @POST("UpdateMessagingId")
-    suspend fun updateMessagingId(@Body body: UpdateMessagingIdBody): Response<UpdateMessagingIdResponse>
+    suspend fun updateMessagingId(@Body body: UpdateMessagingIdBody): Result<UpdateMessagingIdResponse>
 }

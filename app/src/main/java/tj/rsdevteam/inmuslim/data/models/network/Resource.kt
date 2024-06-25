@@ -5,31 +5,11 @@ package tj.rsdevteam.inmuslim.data.models.network
  * github.com/rustamsafarovrs
  */
 
-data class Resource<out T>(
-    val status: Status,
-    val data: T?,
-    val message: String?,
-    val exception: Exception? = null
-) {
+sealed class Resource<out T : Any>(open val data: T? = null) {
 
-    companion object {
-        fun <T> success(data: T?): Resource<T> {
-            return Resource(Status.SUCCESS, data, null)
-        }
+    class InProgress<T : Any>(data: T? = null) : Resource<T>(data)
 
-        fun <T> error(msg: String?, data: T?, exception: Exception?): Resource<T> {
-            return Resource(Status.ERROR, data, msg, exception)
-        }
+    class Success<T : Any>(override val data: T) : Resource<T>(data)
 
-        fun <T> loading(data: T? = null): Resource<T> {
-            return Resource(Status.LOADING, data, null)
-        }
-    }
-
-}
-
-enum class Status {
-    LOADING,
-    SUCCESS,
-    ERROR
+    class Error<T : Any>(data: T? = null, val error: Throwable? = null) : Resource<T>(data)
 }
