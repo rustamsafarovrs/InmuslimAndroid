@@ -1,10 +1,8 @@
 package tj.rsdevteam.inmuslim.data.repositories
 
 import com.google.firebase.messaging.FirebaseMessaging
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.withContext
 import tj.rsdevteam.inmuslim.data.api.Api
 import tj.rsdevteam.inmuslim.data.models.Message
 import tj.rsdevteam.inmuslim.data.models.Resource
@@ -14,6 +12,8 @@ import tj.rsdevteam.inmuslim.data.models.api.UpdateMessagingIdBodyDTO
 import tj.rsdevteam.inmuslim.data.preferences.Preferences
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 /**
  * Created by Rustam Safarov on 15/08/23.
@@ -41,15 +41,22 @@ class UserRepository
 
     fun updateMessagingId(): Flow<Resource<Message>> = flow {
         emit(Resource.InProgress())
-        var msgid = ""
-        withContext(Dispatchers.IO) {
-            FirebaseMessaging.getInstance().token.addOnSuccessListener { token ->
-                msgid = token
+        val token = suspendCoroutine { continuation ->
+            FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    continuation.resume(task.result)
+                } else {
+                    continuation.resume(null)
+                }
             }
         }
-        val result = api.updateMessagingId(UpdateMessagingIdBodyDTO(id = preferences.getUserId(), msgid = msgid))
+        if (token == null) {
+            emit(Resource.Error(Message("Cannot get Firebase Messaging token")))
+            return@flow
+        }
+        val result = api.updateMessagingId(UpdateMessagingIdBodyDTO(id = preferences.getUserId(), msgid = token))
         if (result.isSuccess && result.getOrNull()?.result == 0) {
-            preferences.saveFirebaseToken(msgid)
+            preferences.saveFirebaseToken(token)
             emit(Resource.Success(result.getOrThrow().toMessage()))
         } else {
             emit(errorHandler.getError(result))
