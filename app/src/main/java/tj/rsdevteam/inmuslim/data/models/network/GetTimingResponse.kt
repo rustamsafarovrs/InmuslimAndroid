@@ -14,7 +14,7 @@ data class GetTimingResponse(
     val result: Int,
     val msg: String,
     val region: String,
-    @field:Json(name = "begin_date")
+    @Json(name = "begin_date")
     val beginDate: String,
     val timing: Timing
 )

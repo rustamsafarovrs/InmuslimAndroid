@@ -10,6 +10,6 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class GetTimingBody(
-    @field:Json(name = "region_id")
+    @Json(name = "region_id")
     val regionId: Long
 )
