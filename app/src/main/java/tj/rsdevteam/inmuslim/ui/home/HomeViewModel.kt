@@ -32,6 +32,8 @@ class HomeViewModel
         private set
     var timing = mutableStateOf<Timing?>(null)
         private set
+    val isReviewShown: Boolean
+        get() = userRepository.isReviewShown()
     // endregion
 
     init {
@@ -90,5 +92,9 @@ class HomeViewModel
         if (userRepository.needRegister()) {
             registerUser()
         }
+    }
+
+    fun reviewShowed() {
+        userRepository.saveReviewShown()
     }
 }

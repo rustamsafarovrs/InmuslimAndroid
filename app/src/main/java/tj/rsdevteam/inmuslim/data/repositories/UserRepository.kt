@@ -74,4 +74,12 @@ class UserRepository
     fun getFirebaseToken(): String {
         return preferences.getFirebaseToken()
     }
+
+    fun isReviewShown(): Boolean {
+        return preferences.isReviewShown()
+    }
+
+    fun saveReviewShown() {
+        preferences.saveReviewShown()
+    }
 }

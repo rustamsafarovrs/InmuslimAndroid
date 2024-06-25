@@ -20,6 +20,7 @@ class Preferences(context: Context) {
         const val PREFS_REGION_ID = "region_id"
         const val PREFS_USER_ID = "user_id"
         const val PREFS_FIREBASE_TOKEN = "firebase_token"
+        const val PREFS_REVIEW_SHOWN = "review_shown"
     }
 
     fun saveRegionId(id: Long) {
@@ -40,5 +41,13 @@ class Preferences(context: Context) {
 
     fun getFirebaseToken(): String {
         return prefs.getString(PREFS_FIREBASE_TOKEN, null) ?: ""
+    }
+
+    fun saveReviewShown() {
+        editor.putBoolean(PREFS_REVIEW_SHOWN, true).commit()
+    }
+
+    fun isReviewShown(): Boolean {
+        return prefs.getBoolean(PREFS_REVIEW_SHOWN, false)
     }
 }

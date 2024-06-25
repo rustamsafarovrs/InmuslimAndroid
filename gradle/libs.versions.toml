@@ -22,6 +22,7 @@ retrofit = "2.11.0"
 retrofitAdapters = "1.0.11"
 moshi = "1.15.1"
 firebaseBom = "33.1.1"
+googlePlayReview = "2.0.1"
 
 junit = "4.13.2"
 junitAndroid = "1.1.5"
@@ -71,6 +72,8 @@ firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.r
 firebase-analytics-ktx = { group = "com.google.firebase", name = "firebase-analytics-ktx" }
 firebase-crashlytics-ktx = { group = "com.google.firebase", name = "firebase-crashlytics-ktx" }
 firebase-messaging-ktx = { group = "com.google.firebase", name = "firebase-messaging-ktx" }
+
+google-play-review-ktx = { module = "com.google.android.play:review-ktx", version.ref = "googlePlayReview" }
 
 [bundles]
 

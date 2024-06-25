@@ -138,4 +138,6 @@ dependencies {
     implementation(libs.firebase.messaging.ktx)
     implementation(libs.firebase.analytics.ktx)
     implementation(libs.firebase.crashlytics.ktx)
+
+    implementation(libs.google.play.review.ktx)
 }

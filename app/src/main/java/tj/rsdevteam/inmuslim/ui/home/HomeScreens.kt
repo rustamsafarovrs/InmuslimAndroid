@@ -18,9 +18,11 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -32,6 +34,8 @@ import tj.rsdevteam.inmuslim.ui.common.ProgressIndicator
 import tj.rsdevteam.inmuslim.ui.theme.InmuslimShapes
 import tj.rsdevteam.inmuslim.ui.theme.InmuslimTheme
 import tj.rsdevteam.inmuslim.ui.theme.InmuslimTypography
+import tj.rsdevteam.inmuslim.utils.findActivity
+import tj.rsdevteam.inmuslim.utils.launchInAppReview
 
 /**
  * Created by Rustam Safarov on 8/13/23.
@@ -60,6 +64,14 @@ fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel(),
     navigateToSettings: () -> Unit
 ) {
+    val context = LocalContext.current
+
+    LaunchedEffect(key1 = Unit) {
+        if (!viewModel.isReviewShown) {
+            context.findActivity().launchInAppReview { viewModel.reviewShowed() }
+        }
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
