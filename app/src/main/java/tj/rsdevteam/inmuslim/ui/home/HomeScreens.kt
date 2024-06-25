@@ -28,7 +28,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import tj.rsdevteam.inmuslim.R
 import tj.rsdevteam.inmuslim.data.models.Timing
 import tj.rsdevteam.inmuslim.ui.common.ErrorDialog
-import tj.rsdevteam.inmuslim.ui.common.ProgressBar
+import tj.rsdevteam.inmuslim.ui.common.ProgressIndicator
 import tj.rsdevteam.inmuslim.ui.theme.InmuslimShapes
 import tj.rsdevteam.inmuslim.ui.theme.InmuslimTheme
 import tj.rsdevteam.inmuslim.ui.theme.InmuslimTypography
@@ -73,7 +73,7 @@ fun HomeScreen(
     ) { paddingValues ->
         ErrorDialog(viewModel.dialogState.value)
         if (viewModel.showLoading.value) {
-            ProgressBar()
+            ProgressIndicator()
         }
         Column(
             modifier = Modifier

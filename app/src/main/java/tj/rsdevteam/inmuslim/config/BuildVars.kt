@@ -7,7 +7,7 @@ package tj.rsdevteam.inmuslim.config
 
 object BuildVars {
 
-    val BUILD_TYPE = BuildType.TEST
+    val BUILD_TYPE = BuildType.PROD
 
     val BASE_URL: String = when (BUILD_TYPE) {
         BuildType.TEST -> {
