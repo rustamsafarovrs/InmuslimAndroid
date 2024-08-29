@@ -19,8 +19,8 @@ android {
         applicationId = "tj.rsdevteam.inmuslim"
         minSdk = libs.versions.androidMinSdk.get().toInt()
         targetSdk = libs.versions.androidSdk.get().toInt()
-        versionCode = 4
-        versionName = "1.0.3"
+        versionCode = 5
+        versionName = "1.0.4"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
