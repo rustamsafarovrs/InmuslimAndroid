@@ -1,12 +1,10 @@
 package tj.rsdevteam.inmuslim.data.repositories
 
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import tj.rsdevteam.inmuslim.data.api.Api
-import tj.rsdevteam.inmuslim.data.constants.Constants
 import tj.rsdevteam.inmuslim.data.models.Region
-import tj.rsdevteam.inmuslim.data.models.network.Resource
+import tj.rsdevteam.inmuslim.data.models.Resource
 import tj.rsdevteam.inmuslim.data.preferences.Preferences
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -17,7 +15,6 @@ import javax.inject.Singleton
  */
 
 @Singleton
-@Suppress("TooGenericExceptionCaught")
 class RegionRepository
 @Inject constructor(
     private val api: Api,
@@ -30,23 +27,12 @@ class RegionRepository
     fun saveRegionId(id: Long) = preferences.saveRegionId(id)
 
     fun getRegions(): Flow<Resource<List<Region>>> = flow {
-        try {
-            emit(Resource.loading())
-            val response = api.getRegions()
-            delay(Constants.MIDDLE_DELAY)
-            if (response.isSuccessful && response.body()?.result == 0) {
-                emit(Resource.success(response.body()!!.regions))
-            } else {
-                emit(
-                    errorHandler.getError(
-                        response.code(),
-                        response.errorBody(),
-                        response.body()
-                    )
-                )
-            }
-        } catch (e: Exception) {
-            emit(errorHandler.getError(e))
+        emit(Resource.InProgress())
+        val result = api.getRegions()
+        if (result.isSuccess && result.getOrNull()?.result == 0) {
+            emit(Resource.Success(result.getOrThrow().regions.map { it.toRegion() }))
+        } else {
+            emit(errorHandler.getError(result))
         }
     }
 }

@@ -1,5 +1,7 @@
 package tj.rsdevteam.inmuslim.config
 
+import tj.rsdevteam.inmuslim.BuildConfig
+
 /**
  * Created by Rustam Safarov on 8/13/23.
  * github.com/rustamsafarovrs
@@ -7,16 +9,8 @@ package tj.rsdevteam.inmuslim.config
 
 object BuildVars {
 
-    val BUILD_TYPE = BuildType.TEST
-
-    val BASE_URL: String = when (BUILD_TYPE) {
-        BuildType.TEST -> {
-            "http://rsdevteam.ru:8088/inmuslim/staging/api/"
-        }
-        BuildType.PROD -> {
-            "https://rsdevteam.ru/inmuslim/api/"
-        }
-    }
+    val BUILD_TYPE = if (BuildConfig.DEBUG) BuildType.TEST else BuildType.PROD
+    const val BASE_URL = BuildConfig.BASE_URL
 }
 
 enum class BuildType {

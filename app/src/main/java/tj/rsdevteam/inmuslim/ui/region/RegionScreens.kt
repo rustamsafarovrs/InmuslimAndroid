@@ -24,7 +24,7 @@ import tj.rsdevteam.inmuslim.R
 import tj.rsdevteam.inmuslim.data.models.Region
 import tj.rsdevteam.inmuslim.ui.common.ErrorDialog
 import tj.rsdevteam.inmuslim.ui.common.PrimaryButton
-import tj.rsdevteam.inmuslim.ui.common.ProgressBar
+import tj.rsdevteam.inmuslim.ui.common.ProgressIndicator
 import tj.rsdevteam.inmuslim.ui.theme.InmuslimTypography
 
 /**
@@ -59,7 +59,7 @@ fun RegionScreen(viewModel: RegionViewModel = hiltViewModel(), onSelected: () ->
     ErrorDialog(dialogState = viewModel.dialogState.value)
     Column {
         if (viewModel.showLoading.value) {
-            ProgressBar()
+            ProgressIndicator()
         } else {
             Spacer(modifier = Modifier.height(30.dp))
             Text(

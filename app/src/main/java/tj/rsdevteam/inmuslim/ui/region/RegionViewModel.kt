@@ -4,11 +4,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import tj.rsdevteam.inmuslim.data.models.DialogState
 import tj.rsdevteam.inmuslim.data.models.Region
-import tj.rsdevteam.inmuslim.data.models.network.Status
+import tj.rsdevteam.inmuslim.data.models.Resource
 import tj.rsdevteam.inmuslim.data.repositories.RegionRepository
 import javax.inject.Inject
 
@@ -40,12 +39,12 @@ class RegionViewModel
     private fun getRegions() {
         viewModelScope.launch {
             regionRepository.getRegions().collect { rs ->
-                when (rs.status) {
-                    Status.LOADING -> Unit
-                    Status.SUCCESS -> list.value = rs.data!!
-                    Status.ERROR -> dialogState.value = DialogState(rs.message)
+                when (rs) {
+                    is Resource.InProgress -> Unit
+                    is Resource.Success -> list.value = rs.data
+                    is Resource.Error -> dialogState.value = DialogState(rs.error?.message)
                 }
-                showLoading.value = rs.status == Status.LOADING
+                showLoading.value = rs is Resource.InProgress
             }
         }
     }
